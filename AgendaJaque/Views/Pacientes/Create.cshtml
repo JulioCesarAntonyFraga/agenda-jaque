@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Adicionar Paciente</h1>
 
 <h4>Paciente</h4>
 <hr />
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input type="email" asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -63,7 +63,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info">Voltar</a>
 </div>
 
 @section Scripts {

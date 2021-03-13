@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalhes de @Model.Nome</h1>
 
 <div>
     <h4>Paciente</h4>
@@ -64,6 +64,6 @@
 <partial name="_EnderecoView" />
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-info">Voltar</a>
 </div>

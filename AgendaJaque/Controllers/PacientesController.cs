@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgendaJaque.Data;
 using AgendaJaque.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgendaJaque.Controllers
 {
+
+    [Authorize]
     public class PacientesController : Controller
     {
         private readonly ApplicationDbContext _context;

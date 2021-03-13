@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgendaJaque.Data;
 using AgendaJaque.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgendaJaque.Controllers
 {
+    [Authorize]
     public class HorariosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,7 +29,7 @@ namespace AgendaJaque.Controllers
         }
 
         // GET: Horarios/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
@@ -48,7 +50,7 @@ namespace AgendaJaque.Controllers
         // GET: Horarios/Create
         public IActionResult Create()
         {
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Celular");
+            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace AgendaJaque.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacienteId,Data,Id")] Horario horario)
+        public async Task<IActionResult> Create(Horario horario)
         {
             if (ModelState.IsValid)
             {
@@ -66,24 +68,27 @@ namespace AgendaJaque.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Celular", horario.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome", horario.PacienteId);
             return View(horario);
         }
 
         // GET: Horarios/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var horario = await _context.Horarios.FindAsync(id);
+            var horario = await _context.Horarios
+                .Include(h => h.Paciente)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (horario == null)
             {
                 return NotFound();
             }
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Celular", horario.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome", horario.PacienteId);
             return View(horario);
         }
 
@@ -92,7 +97,7 @@ namespace AgendaJaque.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("PacienteId,Data,Id")] Horario horario)
+        public async Task<IActionResult> Edit(Guid id, Horario horario)
         {
             if (id != horario.Id)
             {
@@ -119,12 +124,12 @@ namespace AgendaJaque.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Celular", horario.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome", horario.PacienteId);
             return View(horario);
         }
 
         // GET: Horarios/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
