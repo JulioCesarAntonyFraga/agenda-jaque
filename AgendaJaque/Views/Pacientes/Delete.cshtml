@@ -38,8 +38,8 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Celular)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Celular)
+        <dd class="col-sm-10">
+            @Convert.ToInt64(Model.Celular).ToString("(##)#####-####")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
@@ -50,11 +50,11 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CelularFamiliar)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CelularFamiliar)
+        <dd class="col-sm-10">
+            @Convert.ToInt64(Model.CelularFamiliar).ToString("(##)#####-####")
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorMensal)
+            @Model.ValorMensal.ToString("C")
         </dt>
         <dd class = "col-sm-10">
             @Model.ValorMensal.ToString("C")
