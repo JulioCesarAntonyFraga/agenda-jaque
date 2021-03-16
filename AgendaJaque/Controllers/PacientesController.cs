@@ -29,7 +29,7 @@ namespace AgendaJaque.Controllers
         }
 
         // GET: Pacientes/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
@@ -37,7 +37,9 @@ namespace AgendaJaque.Controllers
             }
 
             var paciente = await _context.Pacientes
+                .Include(h => h.Endereco)
                 .FirstOrDefaultAsync(m => m.Id == id);
+                
 
             //var endereco = await _context.Enderecos
             //    .FirstOrDefaultAsync(m => m.PacienteId == id);
@@ -74,14 +76,14 @@ namespace AgendaJaque.Controllers
         }
 
         // GET: Pacientes/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var paciente = await _context.Pacientes.FindAsync(id);
+            var paciente = await _context.Pacientes.Include(p => p.Endereco).FirstAsync(m => m.Id == id);
             if (paciente == null)
             {
                 return NotFound();

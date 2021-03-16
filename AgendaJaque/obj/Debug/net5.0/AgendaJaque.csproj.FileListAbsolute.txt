@@ -189,3 +189,4 @@ C:\Users\julio\source\repos\AgendaJaque\AgendaJaque\obj\Debug\net5.0\Razor\Views
 C:\Users\julio\source\repos\AgendaJaque\AgendaJaque\obj\Debug\net5.0\Razor\Views\Horarios\Index.cshtml.g.cs
 C:\Users\julio\source\repos\AgendaJaque\AgendaJaque\obj\Debug\net5.0\Razor\Views\Pacientes\_Endereco.cshtml.g.cs
 C:\Users\julio\source\repos\AgendaJaque\AgendaJaque\obj\Debug\net5.0\Razor\Views\Pacientes\_EnderecoView.cshtml.g.cs
+C:\Users\julio\source\repos\AgendaJaque\AgendaJaque\obj\Debug\net5.0\Razor\Views\Pacientes\_EnderecoEdit.cshtml.g.cs

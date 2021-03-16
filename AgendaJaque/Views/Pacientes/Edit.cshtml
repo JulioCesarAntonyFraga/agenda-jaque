@@ -52,6 +52,7 @@
                 <input asp-for="ValorMensal" class="form-control" />
                 <span asp-validation-for="ValorMensal" class="text-danger"></span>
             </div>
+            <partial name="_EnderecoEdit" />
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
