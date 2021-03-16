@@ -52,7 +52,9 @@
                 <input asp-for="ValorMensal" class="form-control" />
                 <span asp-validation-for="ValorMensal" class="text-danger"></span>
             </div>
+
             <partial name="_EnderecoEdit" />
+
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -60,6 +62,14 @@
         </form>
     </div>
 </div>
+
+<br />
+
+<p>
+    <a asp-controller="Horarios" asp-action="Create" class="btn btn-primary">Adicionar Horário</a>
+</p>
+
+<partial name="../Horarios/_ListaHorarios" model="@Model.Horarios" />
 
 <div>
     <a asp-action="Index" class="btn btn-info">Voltar</a>

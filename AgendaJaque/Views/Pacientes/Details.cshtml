@@ -67,3 +67,11 @@
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
     <a asp-action="Index" class="btn btn-info">Voltar</a>
 </div>
+<br />
+<p>
+    <a asp-controller="Horarios" asp-action="Create" class="btn btn-primary">Adicionar Horário</a>
+</p>
+
+<partial name="../Horarios/_ListaHorarios" model="@Model.Horarios" />
+
+

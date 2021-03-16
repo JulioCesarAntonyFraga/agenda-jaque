@@ -38,6 +38,7 @@ namespace AgendaJaque.Controllers
 
             var paciente = await _context.Pacientes
                 .Include(h => h.Endereco)
+                .Include(h => h.Horarios)
                 .FirstOrDefaultAsync(m => m.Id == id);
                 
 
@@ -83,7 +84,7 @@ namespace AgendaJaque.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Pacientes.Include(p => p.Endereco).FirstAsync(m => m.Id == id);
+            var paciente = await _context.Pacientes.Include(p => p.Endereco).Include(h => h.Horarios).FirstAsync(m => m.Id == id);
             if (paciente == null)
             {
                 return NotFound();
